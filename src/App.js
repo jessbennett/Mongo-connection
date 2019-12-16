@@ -1,26 +1,50 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Card from '@material-ui/core/Card';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: 200
+    }
+  },
+  card: {
+    minWidth: 275
+  }
+}));
+
+export default function App() {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Typography variant='h1' gutterBottom>
+        Enter your name to be added to the database
+      </Typography>
+      <Grid
+        container
+        spacing={0}
+        align='center'
+        justify='center'
+        direction='column'
+      >
+        <Grid item>
+          <Card className={classes.Card}>
+            <form className={classes.root} noValidate autoComplete='off'>
+              <TextField id='standard-basic' label='First Name' />
+              <TextField id='filled-basic' label='Last Name' variant='filled' />
+            </form>
+          </Card>
+        </Grid>
+      </Grid>
     </div>
   );
 }
 
-export default App;
+// export default App;
