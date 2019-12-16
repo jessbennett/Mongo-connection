@@ -1,24 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
-// import axios from "axios";
-
-// import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     '& > *': {
-//       margin: theme.spacing(1),
-//       width: 200
-//     }
-//   },
-//   card: {
-//     minWidth: 275
-//   }
-// }));
 
 class App extends Component {
   state = {
