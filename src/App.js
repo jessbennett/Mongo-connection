@@ -1,50 +1,77 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+// import axios from "axios";
 
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: 200
-    }
-  },
-  card: {
-    minWidth: 275
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     '& > *': {
+//       margin: theme.spacing(1),
+//       width: 200
+//     }
+//   },
+//   card: {
+//     minWidth: 275
+//   }
+// }));
+
+class App extends Component {
+  state = {
+    data: null
+  };
+
+  componentDidMount() {
+    // Call our fetch function below once the component mounts
+    this.callBackendAPI()
+      .then(res => this.setState({ data: res.express }))
+      .catch(err => console.log(err));
   }
-}));
 
-export default function App() {
-  const classes = useStyles();
+  // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
+  callBackendAPI = async () => {
+    const response = await fetch('/express_backend');
+    const body = await response.json();
 
-  return (
-    <div>
-      <Typography variant='h1' gutterBottom>
-        Enter your name to be added to the database
-      </Typography>
-      <Grid
-        container
-        spacing={0}
-        align='center'
-        justify='center'
-        direction='column'
-      >
-        <Grid item>
-          <Card className={classes.Card}>
-            <form className={classes.root} noValidate autoComplete='off'>
-              <TextField id='standard-basic' label='First Name' />
-              <TextField id='filled-basic' label='Last Name' variant='filled' />
-            </form>
-          </Card>
+    if (response.status !== 200) {
+      throw Error(body.message);
+    }
+    return body;
+  };
+
+  render() {
+    return (
+      <div>
+        <Typography variant='h1' gutterBottom>
+          Enter your name to be added to the database
+        </Typography>
+        <Grid
+          container
+          spacing={0}
+          align='center'
+          justify='center'
+          direction='column'
+        >
+          <Grid item>
+            <Card>
+              <form noValidate autoComplete='off'>
+                <TextField id='standard-basic' label='First Name' />
+                <TextField
+                  id='filled-basic'
+                  label='Last Name'
+                  variant='filled'
+                />
+              </form>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
-  );
+        <p>{this.state.data}</p>
+      </div>
+    );
+  }
 }
-
-// export default App;
+export default App;
