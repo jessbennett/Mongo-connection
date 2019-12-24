@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
 class App extends Component {
   state = {
@@ -10,20 +11,27 @@ class App extends Component {
   };
 
   async componentDidMount() {
+    // Call our fetch function below once the component mounts
+    this.callBackendAPI()
+      .then(res => this.setState({ data: res.express }))
+      .catch(err => console.log(err));
+  }
+  // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
+  callBackendAPI = async () => {
     const response = await fetch('/express_backend');
     const body = await response.json();
 
     if (response.status !== 200) {
       throw Error(body.message);
     }
-    console.log({ body });
-  }
+    return body;
+  };
 
   render() {
     return (
       <div>
-        <Typography variant='h1' gutterBottom>
-          Enter your name to be added to the database
+        <Typography variant='h4' gutterBottom>
+          Follow the commands, then see your input in Mongo
         </Typography>
         <Grid
           container
@@ -44,8 +52,9 @@ class App extends Component {
               </form>
             </Card>
           </Grid>
+          <p>{this.state.data}</p>
         </Grid>
-        <p>{this.state.data}</p>
+        <Divider orientation='vertical' />
       </div>
     );
   }
