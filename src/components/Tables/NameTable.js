@@ -34,7 +34,7 @@ export default function NameTable() {
       <Table className={classes.table} aria-label='simple table'>
         <TableHead>
           <TableRow>
-            <TableCell>User's Name</TableCell>
+            <TableCell align='right'>User's Name</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -43,8 +43,8 @@ export default function NameTable() {
               <TableCell component='th' scope='row'>
                 {row.name}
               </TableCell>
-              <TableCell align='right'>{row.FirstName}</TableCell>
-              <TableCell align='right'>{row.LastName}</TableCell>
+              <TableCell>{row.FirstName}</TableCell>
+              <TableCell>{row.LastName}</TableCell>
             </TableRow>
           ))}
         </TableBody>
