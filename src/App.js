@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+
+import NameTable from './components/Tables/NameTable';
+
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 
 class App extends Component {
   state = {
@@ -18,7 +20,7 @@ class App extends Component {
   }
   // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
   callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
+    const response = await fetch('/add_user/:firstName/:lastName');
     const body = await response.json();
 
     if (response.status !== 200) {
@@ -33,6 +35,8 @@ class App extends Component {
         <Typography variant='h4' gutterBottom>
           Follow the commands, then see your input in Mongo
         </Typography>
+        <p>{this.state.data}</p>
+        {console.log(this.state.data)}
         <Grid
           container
           spacing={0}
@@ -52,9 +56,8 @@ class App extends Component {
               </form>
             </Card>
           </Grid>
-          <p>{this.state.data}</p>
         </Grid>
-        <Divider orientation='vertical' />
+        <NameTable />
       </div>
     );
   }
