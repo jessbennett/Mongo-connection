@@ -14,8 +14,8 @@ const useStyles = makeStyles({
   }
 });
 
-function createData(FirstName, LastName) {
-  return { FirstName, LastName };
+function createData(name, FirstName, LastName) {
+  return { name, FirstName, LastName };
 }
 
 const rows = [
@@ -34,7 +34,7 @@ export default function NameTable() {
       <Table className={classes.table} aria-label='simple table'>
         <TableHead>
           <TableRow>
-            <TableCell align='right'>User's Name</TableCell>
+            <TableCell>User's Name</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
