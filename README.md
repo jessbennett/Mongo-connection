@@ -9,7 +9,7 @@ In the project directory, you can run:
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `node server.js`
+### `nodemon server.js`
 
 Runs the express server.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.

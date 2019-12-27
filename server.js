@@ -13,8 +13,8 @@ app.get('/express_backend', (req, res) => {
 
 app.get('/add_user/:firstName/:lastName', (req, res) => {
   const { firstName, lastName } = req.params;
-  var User = mongoose.model('UserSchema', UserSchema, 'UserSchema');
-  var userSchema = new User({ firstName, lastName });
+  const User = mongoose.model('UserSchema', UserSchema, 'UserSchema');
+  const userSchema = new User({ firstName, lastName });
 
   // save model to database
   userSchema.save((err, userSchema) => {
