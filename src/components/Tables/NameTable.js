@@ -7,6 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+// import { response } from 'express';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   table: {
@@ -28,6 +30,23 @@ const rows = [
 
 export default function NameTable() {
   const classes = useStyles();
+  const makeUser = async () => {
+    try {
+      const response = await fetch(
+        'http://localhost:5000/add_user/jessica/bennett',
+        {
+          method: 'POST',
+          body: JSON.stringify({ firstName: 'jessica', lastName: 'bennett' })
+        }
+      );
+      const { data } = response;
+      console.log({ response, data });
+      return response;
+    } catch (error) {
+      console.log({ error });
+      return error;
+    }
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -49,6 +68,9 @@ export default function NameTable() {
           ))}
         </TableBody>
       </Table>
+      <Button variant='contained' onClick={() => makeUser()}>
+        work
+      </Button>
     </TableContainer>
   );
 }
