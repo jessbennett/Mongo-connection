@@ -6,14 +6,14 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
-      width: 200
+      width: 200,
     },
-    minWidth: 275
-  }
+    minWidth: 275,
+  },
 }));
 
 export default function WelcomeForm() {
