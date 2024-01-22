@@ -27,7 +27,10 @@ app.post('/add_user/:firstName/:lastName', (req, res) => {
 });
 
 // For Mongo
+MongoDB.local
+
 require('dotenv').config();
+
 const mongoose = require('mongoose');
 
 try {
